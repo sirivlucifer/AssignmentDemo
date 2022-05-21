@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Collectable
   - LevelEnd
+  - FinishLevel
   layers:
   - Default
   - TransparentFX

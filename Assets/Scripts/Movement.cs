@@ -8,24 +8,34 @@ public class Movement : MonoBehaviour
     Vector3 firstPos,endPos;
     public float PlayerSpeed;
     private Rigidbody _rigidBody;
-    public bool IsMoving=true;
+    public bool IsMoving;
+    public GameManager GameManager;
+
 
        private void Awake() {
            _rigidBody = GetComponent<Rigidbody>();
+            
     }
+    private void Start() { //start every game. 
+           StartCoroutine(MyIEnumerator());
+    }
+
+    
+    IEnumerator MyIEnumerator()
+{
+
+       yield return new WaitForSeconds(3);
+	if(FindObjectOfType<BoxControl>().RequiredPickups>=FindObjectOfType<BoxControl>().CurrentPickups){
+                   GameManager.IsGameOver =true;
+        }
+
+}
     void Update()
     {
-       if(IsMoving){
-
-           //use velocity for movement.
+       if(IsMoving&&GameManager.IsGameStarted){
+           
        //transform.Translate(-Vector3.up * forwardSpeed * Time.deltaTime);
-       //move forward with new vector3 and rigidbody velocity.
        _rigidBody.velocity = new Vector3(forwardSpeed,0,0);
-       
-      // _rigidBody.velocity = new Vector3()
-
-        //transform.position += -transform.up * Time.deltaTime * forwardSpeed;
-      
        if(Input.GetMouseButtonDown(0)){
               firstPos = Input.mousePosition;
        }
@@ -45,11 +55,18 @@ public class Movement : MonoBehaviour
        }
        private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag=="LevelEnd"){
-            Debug.Log("LevelEnd");
-            //other is moving false.
+            Debug.Log("LevelEnd--LevelStage.");
             IsMoving=false;
-            //other.gameObject.SetActive(false);
+            other.gameObject.SetActive(false);
+          //  MyIEnumerator();
+               
+        }
+        if(other.gameObject.tag=="FinishLevel"){
+               IsMoving=false;
+               Debug.Log("FinishLevel-- level up");
+               //TODO: Level Up Screen
         }
 
        }
-}
+}//mono behaviour
+       

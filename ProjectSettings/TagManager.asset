@@ -8,6 +8,9 @@ TagManager:
   - LevelEnd
   - FinishLevel
   - TurnerTrigger
+  - RampTrigger
+  - RampEndTrigger
+  - AfterRamp
   layers:
   - Default
   - TransparentFX

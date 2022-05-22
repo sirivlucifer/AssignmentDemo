@@ -17,15 +17,17 @@ public class BoxControl : MonoBehaviour
     public GameObject DoorRight;
     private float _timer = 2.5f;
     private float _moveTime = 2.5f;
-    //public Movement Movement;
+
+    
 
     private void Awake() {
         CurrentPickupsText.text = CurrentPickups.ToString();
         RequiredPickupsText.text = " / " + RequiredPickups.ToString();
     }
     private void FixedUpdate() {
-        if(_isCompleted){
-            if(CurrentPickups >= RequiredPickups){//this if needed because of other level will be bug if it is not.
+    if(_isCompleted){
+        if(CurrentPickups >= RequiredPickups){//this if needed because of other level will be bug if it is not.
+        FindObjectOfType<GameManager>().toggleFailTimer(false);
             if(_timer > 0){//do after 2.5 seconds.
                 _timer -= Time.fixedDeltaTime;
             }else{
@@ -41,7 +43,8 @@ public class BoxControl : MonoBehaviour
             } 
         }
     }
- } 
+ }
+
 }
     private void OnTriggerEnter(Collider other) { //i have change to use collider script but i dont like. i want to always use ontriggerenter.
         if(other.gameObject.tag=="Collectable"){
@@ -52,4 +55,6 @@ public class BoxControl : MonoBehaviour
             }
     }
 }
+
+
 }

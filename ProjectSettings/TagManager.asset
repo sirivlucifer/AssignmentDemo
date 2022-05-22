@@ -7,6 +7,7 @@ TagManager:
   - Collectable
   - LevelEnd
   - FinishLevel
+  - TurnerTrigger
   layers:
   - Default
   - TransparentFX

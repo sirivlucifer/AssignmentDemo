@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] float forwardSpeed = 10f;
     Vector3 firstPos,endPos;
-    public float PlayerSpeed;
+    public float PlayerSpeed; //horizontal speed
     private Rigidbody _rigidBody;
     public bool IsMoving;
     public GameManager GameManager;
@@ -34,21 +34,23 @@ public class Movement : MonoBehaviour
             
     }
     private void Update() {
-       if(_isOnRamp){     
+       if(_isOnRamp){      //rampa hız arttırma. 
               if(_isHitTheGround==false){
+                     if(30>forwardSpeed){
               transform.Translate(-Vector3.up * Time.deltaTime * forwardSpeed); // uçabilmek için translate kullandım.
                      if(Input.GetMouseButtonDown(0)){
                             forwardSpeed+=5;
                             
             }
+            }
               }
-
+       
        }
     }
 
     void FixedUpdate()
     {
-           if(_isOnRamp){
+           if(_isOnRamp){ //rampa hız düşürücüsü.
                      if(_isHitTheGround==false){
                      if(_forwardSpeedDecraseTimer >0){
                  _forwardSpeedDecraseTimer -= Time.fixedDeltaTime;
@@ -98,10 +100,11 @@ public class Movement : MonoBehaviour
               endPos = Vector3.zero;
        }
        } 
-              if(IsMoving==false&&_isOnRamp==false){
-              Debug.Log("zero trigger");
-              _rigidBody.velocity = Vector3.zero;
-              }            
+
+       if(IsMoving==false&&_isOnRamp==false){
+       Debug.Log("zero trigger");
+       _rigidBody.velocity = Vector3.zero;
+       }            
        }//fixed update.
        private void TurnerActivate(){
               _leftTurner.SetActive(true);
@@ -158,9 +161,7 @@ public class Movement : MonoBehaviour
                Debug.Log("is hit the ground"+_isHitTheGround);
                _rigidBody.drag = 1;
                Debug.Log("rigidbody drag"+_rigidBody.drag);
-
         }
-
        }
 
 }//mono behaviour

@@ -27,7 +27,7 @@ public class Movement : MonoBehaviour
             
     }
 
-    void Update()
+    void FixedUpdate()
     {
            //clamp z axis
                  if(transform.position.z>zMax){
@@ -40,8 +40,8 @@ public class Movement : MonoBehaviour
 
        if(_isTurnerActivated){
 
-        _leftTurner.transform.rotation = Quaternion.Euler(0f,a ,0f);
-        _rightTurner.transform.rotation = Quaternion.Euler(0f,-a ,0f);
+        _leftTurner.transform.rotation = Quaternion.Euler(0f,a ,-90f);
+        _rightTurner.transform.rotation = Quaternion.Euler(0f,-a ,-90f);
 
         a+=3;
         if (a>360)
@@ -75,11 +75,15 @@ public class Movement : MonoBehaviour
        private void TurnerActivate(){
               _leftTurner.SetActive(true);
               _rightTurner.SetActive(true);
+              transform.Find("RightTurnerHolder").gameObject.SetActive(true);
+              transform.Find("LeftTurnerHolder").gameObject.SetActive(true);
               _isTurnerActivated=true;
        }
-              private void TurnerDeActivate(){
+       private void TurnerDeActivate(){
               _leftTurner.SetActive(false);
               _rightTurner.SetActive(false);
+              transform.Find("RightTurnerHolder").gameObject.SetActive(false);
+              transform.Find("LeftTurnerHolder").gameObject.SetActive(false);
               _isTurnerActivated=false;
        }
        private void OnTriggerEnter(Collider other) {

@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] float forwardSpeed = 10f;
+    [SerializeField] public float forwardSpeed = 10f;
     Vector3 firstPos,endPos;
     public float PlayerSpeed; //horizontal speed
     private Rigidbody _rigidBody;
@@ -24,10 +24,6 @@ public class Movement : MonoBehaviour
     private bool _isHitTheGround;
     private float _forwardSpeedDecraseTimer = 0.1f;
 
-
-
-
-
        private void Awake() {
            _rigidBody = GetComponent<Rigidbody>();
  
@@ -36,11 +32,10 @@ public class Movement : MonoBehaviour
     private void Update() {
        if(_isOnRamp){      //rampa hız arttırma. 
               if(_isHitTheGround==false){
-                     if(30>forwardSpeed){
+                     if(50>forwardSpeed){
               transform.Translate(-Vector3.up * Time.deltaTime * forwardSpeed); // uçabilmek için translate kullandım.
                      if(Input.GetMouseButtonDown(0)){
-                            forwardSpeed+=5;
-                            
+                            forwardSpeed+=5;         
             }
             }
               }
@@ -134,6 +129,7 @@ public class Movement : MonoBehaviour
         if(other.gameObject.tag=="FinishLevel"){
                IsMoving=false;
                Debug.Log("FinishLevel-- level up");
+               GameManager.IsLevelUp=true;
                //TODO: Level Up Screen
 
         }

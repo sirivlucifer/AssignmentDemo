@@ -8,10 +8,12 @@ public class GameManager : MonoBehaviour
     public static bool IsGameStarted=false;
     public GameObject StartingText;
     public GameObject GameOverPanel;
+    public GameObject LevelUpPanel;
 
     public static bool IsGameOver=false;
     private bool _levelFailTimerStart = false;
     private float _levelFailTimer = 5f;
+    public static bool IsLevelUp=false;
 
     // Update is called once per frame
     void Update()
@@ -26,6 +28,12 @@ public class GameManager : MonoBehaviour
         }
         if(IsGameOver==false){
             GameOverPanel.SetActive(false);
+        }
+        if(IsLevelUp==true){
+            LevelUpPanel.SetActive(true);
+        }
+        if(IsLevelUp==false){
+            LevelUpPanel.SetActive(false);
         }
     }
     private void FixedUpdate()
@@ -64,6 +72,11 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         IsGameOver=false;
+    }
+    public void LevelUpButton(string level){
+        SceneManager.LoadScene(level);
+        IsLevelUp=false;
+        IsGameStarted=false;
     }
 
 

@@ -11,6 +11,8 @@ TagManager:
   - RampTrigger
   - RampEndTrigger
   - AfterRamp
+  - Points
+  - Coin
   layers:
   - Default
   - TransparentFX

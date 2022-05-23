@@ -23,6 +23,7 @@ public class Movement : MonoBehaviour
     private bool _isExitRamp;
     private bool _isHitTheGround;
     private float _forwardSpeedDecraseTimer = 0.1f;
+    
 
        private void Awake() {
            _rigidBody = GetComponent<Rigidbody>();
@@ -35,7 +36,8 @@ public class Movement : MonoBehaviour
                      if(50>forwardSpeed){
               transform.Translate(-Vector3.up * Time.deltaTime * forwardSpeed); // uçabilmek için translate kullandım.
                      if(Input.GetMouseButtonDown(0)){
-                            forwardSpeed+=5;         
+                            forwardSpeed+=5;
+                            FindObjectOfType<Ramp>().OnSliderChanged();         
             }
             }
               }
@@ -45,19 +47,20 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-           if(_isOnRamp){ //rampa hız düşürücüsü.
-                     if(_isHitTheGround==false){
-                     if(_forwardSpeedDecraseTimer >0){
-                 _forwardSpeedDecraseTimer -= Time.fixedDeltaTime;
-            }else{
-                   if(.2f<forwardSpeed){
-                 forwardSpeed-=1;
-                 _forwardSpeedDecraseTimer = 0.1f;
-                 Debug.Log("forwardSpeed: "+forwardSpeed);
+       if(_isOnRamp){ //rampa hız düşürücüsü.
+              if(_isHitTheGround==false){
+              if(_forwardSpeedDecraseTimer >0){
+              _forwardSpeedDecraseTimer -= Time.fixedDeltaTime;
+       }else{
+              if(2f<forwardSpeed&&_isExitRamp==false){
+              forwardSpeed-=1;
+              _forwardSpeedDecraseTimer = 0.1f;
+              Debug.Log("forwardSpeed: "+forwardSpeed);
+                      }
+               }
               }
-            }
-           }
-           }
+       }
+
            
        if(transform.position.z>zMax){
        transform.position = new Vector3(transform.position.x,transform.position.y,zMax);
@@ -97,7 +100,6 @@ public class Movement : MonoBehaviour
        } 
 
        if(IsMoving==false&&_isOnRamp==false){
-       Debug.Log("zero trigger");
        _rigidBody.velocity = Vector3.zero;
        }            
        }//fixed update.
@@ -154,9 +156,11 @@ public class Movement : MonoBehaviour
         }
         if(other.CompareTag("AfterRamp")){
                _isHitTheGround = true;
-               Debug.Log("is hit the ground"+_isHitTheGround);
-               _rigidBody.drag = 1;
-               Debug.Log("rigidbody drag"+_rigidBody.drag);
+               _rigidBody.drag = 5;
+                //TODO: LEVEL UP TİMER
+              GameManager.IsLevelUp=true;
+
+
         }
        }
 

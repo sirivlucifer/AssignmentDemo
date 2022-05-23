@@ -35,6 +35,7 @@ public class BoxControl : MonoBehaviour
                 Elevator.transform.DOMoveY(0,1f);
                 DoorLeft.transform.DOLocalRotate(new Vector3(50,0,0),2.5f);
                 DoorRight.transform.DOLocalRotate(new Vector3(-50,0,0),2.5f);
+
                 if(_moveTime >0){
                  _moveTime -= Time.fixedDeltaTime;
             }else{

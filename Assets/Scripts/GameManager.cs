@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,8 +16,19 @@ public class GameManager : MonoBehaviour
     private bool _levelFailTimerStart = false;
     private float _levelFailTimer = 5f;
     public static bool IsLevelUp=false;
+    public static GameManager Instance;
+    public TextMeshProUGUI CoinText;
+    int score;
 
-    // Update is called once per frame
+    private void Start() {
+        if(Instance==null){
+            Instance = this;
+        }
+    }
+    public void ChangeScore(int coinValue){
+        score = coinValue*10 + score;
+        CoinText.text = score.ToString();
+    }
     void Update()
     {
         if(Input.GetMouseButtonDown(0)){

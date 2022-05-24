@@ -9,6 +9,9 @@ public class Ramp : MonoBehaviour
     [Header("Ramp UI Settings")]
     public Slider FillBarSlider;
     public GameObject FillBarSliderPanel;
+    public Gradient Gradient;
+    public Image Fill;
+
 
     [Header("Ramp Settings")]
     public float rampSpesssssed = 1f;
@@ -21,6 +24,8 @@ public class Ramp : MonoBehaviour
     public void OnSliderChanged(){
         FillBarSlider.value = FindObjectOfType<Movement>().forwardSpeed;
         FillBarSliderPanel.SetActive(true);
+        Fill.color = Gradient.Evaluate(1f);
+        Fill.color = Gradient.Evaluate(FillBarSlider.value / FillBarSlider.maxValue);
         
     }
  

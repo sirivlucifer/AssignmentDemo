@@ -23,7 +23,7 @@ public class Ramp : MonoBehaviour
 
     public void OnSliderChanged(){
         FillBarSlider.value = FindObjectOfType<Movement>().forwardSpeed;
-        FillBarSliderPanel.SetActive(true);
+        //FillBarSliderPanel.SetActive(true);
         Fill.color = Gradient.Evaluate(1f);
         Fill.color = Gradient.Evaluate(FillBarSlider.value / FillBarSlider.maxValue);
         

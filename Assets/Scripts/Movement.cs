@@ -147,6 +147,7 @@ public class Movement : MonoBehaviour
               IsMoving=false;
              // transform.DOMoveZ(0,1f);
               _isOnRamp=true;
+              FindObjectOfType<Ramp>().FillBarSliderPanel.SetActive(true);
         }
        if(other.CompareTag("RampEndTrigger")){
               //buga girdiği için z posizyonunu bilerek açmadım.

@@ -221,6 +221,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FillBarSlider: {fileID: 1466851194}
   FillBarSliderPanel: {fileID: 1354064571}
+  Gradient:
+    serializedVersion: 2
+    key0: {r: 0.21456432, g: 1, b: 0, a: 1}
+    key1: {r: 0.9056604, g: 0.8498161, b: 0.089711644, a: 1}
+    key2: {r: 0.9137255, g: 0.4471646, b: 0.0509804, a: 0}
+    key3: {r: 0.90588236, g: 0.25077033, b: 0.05490196, a: 0}
+    key4: {r: 1, g: 0, b: 0.029372692, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 16962
+    ctime2: 34695
+    ctime3: 49730
+    ctime4: 62644
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 5
+    m_NumAlphaKeys: 2
+  Fill: {fileID: 1152908901}
   rampSpesssssed: 1
 --- !u!1 &64686659
 GameObject:
@@ -593,6 +623,7 @@ GameObject:
   - component: {fileID: 297976774}
   - component: {fileID: 297976776}
   - component: {fileID: 297976775}
+  - component: {fileID: 297976777}
   m_Layer: 0
   m_Name: TapButton
   m_TagString: Untagged
@@ -655,6 +686,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 297976773}
   m_CullTransparentMesh: 1
+--- !u!111 &297976777
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297976773}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: ecb600571762f5b4d8e0ac95910ba183, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: ecb600571762f5b4d8e0ac95910ba183, type: 2}
+  - {fileID: 7400000, guid: ecb600571762f5b4d8e0ac95910ba183, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &390384176
 GameObject:
   m_ObjectHideFlags: 0
@@ -1356,7 +1404,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -1816,12 +1864,12 @@ GameObject:
   - component: {fileID: 1354064574}
   - component: {fileID: 1354064573}
   m_Layer: 0
-  m_Name: FillBar-Canva
+  m_Name: FillBar-Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1354064572
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1993,10 +2041,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1152908900}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: 2
+  m_MaxValue: 50
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 2
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2703,7 +2751,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1106079891, guid: 6a9e4f179a58afe459ea973772a926f1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1516070764, guid: 6a9e4f179a58afe459ea973772a926f1, type: 3}
       propertyPath: m_IsActive

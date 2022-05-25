@@ -8,7 +8,7 @@ public class Triggers : MonoBehaviour
        private void OnTriggerEnter(Collider other) {
         if(other.CompareTag("LevelEnd")){
             Debug.Log("LevelEnd--LevelStage.");
-            Movement.IsMoving=false;
+            FindObjectOfType<Movement>().IsMoving=false;
            // _rigidBody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
             other.gameObject.SetActive(false);
             Movement.StageEnd=true;
@@ -16,7 +16,7 @@ public class Triggers : MonoBehaviour
             FindObjectOfType<Movement>().TurnerDeActivate();                         
         }
         if(other.CompareTag("FinishLevel")){
-               Movement.IsMoving=false;
+                 FindObjectOfType<Movement>().IsMoving=false;
                Debug.Log("FinishLevel-- level up");
                GameManager.IsLevelUp=true;
               SoundManager.PlaySound("LevelFinish");
@@ -31,7 +31,7 @@ public class Triggers : MonoBehaviour
               Debug.Log("Ramp Trigger Enter");
               Movement.RigidBody.constraints = RigidbodyConstraints.FreezeRotationZ;
               other.gameObject.SetActive(false);
-              Movement.IsMoving=false;
+            FindObjectOfType<Movement>().IsMoving=false;
              // transform.DOMoveZ(0,1f);
               Movement.IsOnRamp=true;
               FindObjectOfType<Ramp>().FillBarSliderPanel.SetActive(true);
@@ -39,7 +39,7 @@ public class Triggers : MonoBehaviour
        if(other.CompareTag("RampEndTrigger")){
               //buga girdiği için z posizyonunu bilerek açmadım.
               other.gameObject.SetActive(false);
-              Movement.IsExitRamp=true;
+              FindObjectOfType<Movement>().IsExitRamp=true;
         }
         if(other.CompareTag("AfterRamp")){
                Movement.IsHitTheGround = true;

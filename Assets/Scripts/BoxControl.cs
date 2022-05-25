@@ -16,8 +16,8 @@ public class BoxControl : MonoBehaviour
     public GameObject DoorRight;
     private float _timer = 2.5f;
     private float _moveTime = 2.5f;
-    public ParticleSystem Efect;
-    public ParticleSystem Efect2;
+    public ParticleSystem Efect,Efect2,Efect3;
+
 
     private void Awake() {
         CurrentPickupsText.text = CurrentPickups.ToString();
@@ -36,12 +36,14 @@ public class BoxControl : MonoBehaviour
                 DoorRight.transform.DOLocalRotate(new Vector3(-50,0,0),2.5f);
                 Efect.Play();
                 Efect2.Play();
+                Efect3.Play();
                 Efect.transform.position = DoorLeft.transform.position ;
                 Efect2.transform.position =   DoorRight.transform.position ;
+                Efect3.transform.position =   Elevator.transform.position ;
                 if(_moveTime >0){
                  _moveTime -= Time.fixedDeltaTime;
             }else{
-                 Movement.IsMoving = true;    
+                FindObjectOfType<Movement>().IsMoving = true;    
                  CurrentPickups=0;
             } 
         }
@@ -53,6 +55,7 @@ public class BoxControl : MonoBehaviour
         if(other.gameObject.tag=="Collectable"){
             CurrentPickups++;
             CurrentPickupsText.text = CurrentPickups.ToString();
+            other.gameObject.tag = "Untagged";
             if(CurrentPickups>=RequiredPickups){
                 _isCompleted = true;
                 SoundManager.PlaySound("PassLevel");   

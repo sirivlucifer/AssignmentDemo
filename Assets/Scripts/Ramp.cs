@@ -33,7 +33,7 @@ public class Ramp : MonoBehaviour
                 if(_forwardSpeedDecraseTimer >0){
                     _forwardSpeedDecraseTimer -= Time.fixedDeltaTime;
         }else{
-              if(2f<Movement.forwardSpeed&&Movement.IsExitRamp==false){
+              if(2f<Movement.forwardSpeed&&FindObjectOfType<Movement>().IsExitRamp==false){
                 Movement.forwardSpeed-=1;
                 _forwardSpeedDecraseTimer = 0.1f;
                 Debug.Log("forwardSpeed: "+Movement.forwardSpeed);

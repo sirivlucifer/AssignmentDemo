@@ -9,7 +9,7 @@ public class Movement : MonoBehaviour
     Vector3 firstPos,endPos;
     public float PlayerSpeed; //horizontal speed
     public static Rigidbody RigidBody;
-    public static bool IsMoving=true;
+    public bool IsMoving=true;
     public GameManager GameManager;
     public static bool StageEnd;
     [Header("Turner Controls")]
@@ -19,7 +19,7 @@ public class Movement : MonoBehaviour
     private float zMin = -3.53f, zMax = 3.53f; //limit.
     public static bool IsOnRamp=false;
     private float a=0;
-    public static bool IsExitRamp=false;
+    public bool IsExitRamp=false;
     public static bool IsHitTheGround=false;
        [Header("SCRIPTABLE SYSTEM")]
        [SerializeField] private Scriptable _scriptable;
@@ -28,7 +28,24 @@ public class Movement : MonoBehaviour
        GetComponent<Renderer>().material.color = _scriptable.ThisColor;
        transform.localScale = _scriptable.ThisVector;
        }
-    void FixedUpdate()
+       private void Update() {
+                     if(IsMoving==true&&GameManager.IsGameStarted&&GameManager.IsGameOver==false&&IsExitRamp==false){     
+        RigidBody.velocity = new Vector3(forwardSpeed,0,0); //topların yavaşlatmaması için translate kullanmadım.
+       if(Input.GetMouseButtonDown(0)){
+              firstPos = Input.mousePosition;
+       }
+       else if(Input.GetMouseButton(0)){
+              float distance = endPos.x - firstPos.x;
+              endPos = Input.mousePosition;
+              transform.Translate(distance * Time.deltaTime * PlayerSpeed/100,0,0);
+       }
+       if(Input.GetMouseButtonUp(0)){
+              firstPos = Vector3.zero;
+              endPos = Vector3.zero;
+       }
+       } 
+       }
+    private void FixedUpdate()
     {   
        if(transform.position.z>zMax){
        transform.position = new Vector3(transform.position.x,transform.position.y,zMax);
@@ -46,21 +63,7 @@ public class Movement : MonoBehaviour
             a = 0;
         }
        }
-       if(IsMoving&&GameManager.IsGameStarted&&GameManager.IsGameOver==false&&IsExitRamp==false){     
-        RigidBody.velocity = new Vector3(forwardSpeed,0,0); //topların yavaşlatmaması için translate kullanmadım.
-       if(Input.GetMouseButtonDown(0)){
-              firstPos = Input.mousePosition;
-       }
-       else if(Input.GetMouseButton(0)){
-              endPos = Input.mousePosition;
-              float distance = endPos.x - firstPos.x;
-              transform.Translate(distance * Time.deltaTime * PlayerSpeed/100,0,0);
-       }
-       if(Input.GetMouseButtonUp(0)){
-              firstPos = Vector3.zero;
-              endPos = Vector3.zero;
-       }
-       } 
+
        if(IsMoving==false&&IsOnRamp==false){
        RigidBody.velocity = Vector3.zero;
        }            

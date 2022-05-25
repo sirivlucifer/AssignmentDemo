@@ -7,12 +7,12 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public static bool IsGameStarted=false;
+    public bool IsGameStarted=false;
     public GameObject StartingText;
     public GameObject GameOverPanel;
     public GameObject LevelUpPanel;
 
-    public static bool IsGameOver=false;
+    public bool IsGameOver=false;
     private bool _levelFailTimerStart = false;
     private float _levelFailTimer = 5f;
     public static bool IsLevelUp=false;
@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
         if(Input.GetMouseButtonDown(0)){
             IsGameStarted=true;
             Destroy(StartingText);
+            
         }
         if(IsGameOver){
             GameOverPanel.SetActive(true);

@@ -17,6 +17,7 @@ public class BoxControl : MonoBehaviour
     private float _timer = 2.5f;
     private float _moveTime = 2.5f;
     public ParticleSystem Efect;
+    public ParticleSystem Efect2;
 
     private void Awake() {
         CurrentPickupsText.text = CurrentPickups.ToString();
@@ -33,10 +34,14 @@ public class BoxControl : MonoBehaviour
                 Elevator.transform.DOMoveY(0,1f);
                 DoorLeft.transform.DOLocalRotate(new Vector3(50,0,0),2.5f);
                 DoorRight.transform.DOLocalRotate(new Vector3(-50,0,0),2.5f);
+                Efect.Play();
+                Efect2.Play();
+                Efect.transform.position = DoorLeft.transform.position ;
+                Efect2.transform.position =   DoorRight.transform.position ;
                 if(_moveTime >0){
                  _moveTime -= Time.fixedDeltaTime;
             }else{
-                 FindObjectOfType<Movement>().IsMoving = true;    
+                 Movement.IsMoving = true;    
                  CurrentPickups=0;
             } 
         }

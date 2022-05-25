@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58a6c242412df8d42b5f8876778b9803, type: 3}
   m_Name: FloorColor
   m_EditorClassIdentifier: 
-  ThisColor: {r: 0.87165225, g: 1, b: 0, a: 1}
+  ThisColor: {r: 0.19339621, g: 0.81977963, b: 1, a: 1}
   ThisVector: {x: 0, y: 0, z: 0}

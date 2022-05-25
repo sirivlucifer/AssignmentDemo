@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     }
     public void ChangeScore(int coinValue){
         score = coinValue*10 + score;
+        score = score / 3 ;
         CoinText.text = score.ToString();
     }
     void Update()

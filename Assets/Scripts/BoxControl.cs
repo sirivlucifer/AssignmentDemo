@@ -55,7 +55,7 @@ public class BoxControl : MonoBehaviour
         if(other.gameObject.tag=="Collectable"){
             CurrentPickups++;
             CurrentPickupsText.text = CurrentPickups.ToString();
-            other.gameObject.tag = "Untagged";
+            other.gameObject.tag = "Untagged"; // dont trigger again. :)
             if(CurrentPickups>=RequiredPickups){
                 _isCompleted = true;
                 SoundManager.PlaySound("PassLevel");   

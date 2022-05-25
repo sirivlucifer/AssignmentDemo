@@ -7,6 +7,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
     public bool IsGameStarted=false;
     public GameObject StartingText;
     public GameObject GameOverPanel;
@@ -15,20 +16,31 @@ public class GameManager : MonoBehaviour
     public bool IsGameOver=false;
     private bool _levelFailTimerStart = false;
     private float _levelFailTimer = 5f;
-    public static bool IsLevelUp=false;
+    public bool IsLevelUp=false;
     public static GameManager Instance;
     public TextMeshProUGUI CoinText;
-    int score;
+    public int score;
+
 
     private void Start() {
         if(Instance==null){
             Instance = this;
         }
+        score = PlayerPrefs.GetInt("score"); //SAVE SYSTEM
+        CoinText.text = score.ToString();
+        Debug.Log(PlayerPrefs.GetInt("score"));
     }
     public void ChangeScore(int coinValue){
-        score = coinValue*10 + score;
-        score = score / 3 ;
+        PlayerPrefs.SetInt("score",score);
+        score += coinValue*10 ;
+        Debug.Log("aaaaaa");
+        Debug.Log(PlayerPrefs.GetInt("score"));
+        PlayerPrefs.SetInt("score",score); //SAVE SYSTEM
         CoinText.text = score.ToString();
+    }
+    private void Awake() {
+          LevelUpPanel.SetActive(false);
+          if (instance == null) instance = this;
     }
     void Update()
     {
@@ -63,7 +75,6 @@ public class GameManager : MonoBehaviour
             {
                 _levelFailTimerStart = false;
                 IsGameOver = true;
-                Debug.Log("LevelFailed!");
             }
         }
     }
@@ -73,7 +84,6 @@ public class GameManager : MonoBehaviour
     {
         if (state)
         {
-            Debug.Log("Timera girdi");
             _levelFailTimer = 3f;
             _levelFailTimerStart = true;
         }
@@ -88,11 +98,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         IsGameOver=false;
     }
-    public void LevelUpButton(string level){
-        SceneManager.LoadScene(level);
-        IsLevelUp=false;
-        IsGameStarted=false;
-    }
+
 
 
 }

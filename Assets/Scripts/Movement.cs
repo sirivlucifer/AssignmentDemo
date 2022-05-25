@@ -5,10 +5,11 @@ using DG.Tweening;
 
 public class Movement : MonoBehaviour
 {
-    [SerializeField] public static float forwardSpeed = 10f;
+       public static Movement Instance;
+    [SerializeField] public  float forwardSpeed = 10f;
     Vector3 firstPos,endPos;
     public float PlayerSpeed; //horizontal speed
-    public static Rigidbody RigidBody;
+    public  Rigidbody RigidBody;
     public bool IsMoving=true;
     public GameManager GameManager;
     public static bool StageEnd;
@@ -17,19 +18,22 @@ public class Movement : MonoBehaviour
     [SerializeField] private GameObject _leftTurner;
     private bool _isTurnerActivated;
     private float zMin = -3.53f, zMax = 3.53f; //limit.
-    public static bool IsOnRamp=false;
+    public bool IsOnRamp=false;
     private float a=0;
     public bool IsExitRamp=false;
-    public static bool IsHitTheGround=false;
+    public bool IsHitTheGround=false;
        [Header("SCRIPTABLE SYSTEM")]
        [SerializeField] private Scriptable _scriptable;
        private void Awake() {
            RigidBody = GetComponent<Rigidbody>();
        GetComponent<Renderer>().material.color = _scriptable.ThisColor;
        transform.localScale = _scriptable.ThisVector;
+       if(Instance==null){
+           Instance = this;
+       }
        }
        private void Update() {
-                     if(IsMoving==true&&GameManager.IsGameStarted&&GameManager.IsGameOver==false&&IsExitRamp==false){     
+              if(IsMoving==true&&GameManager.IsGameStarted&&GameManager.IsGameOver==false&&IsExitRamp==false){     
         RigidBody.velocity = new Vector3(forwardSpeed,0,0); //topların yavaşlatmaması için translate kullanmadım.
        if(Input.GetMouseButtonDown(0)){
               firstPos = Input.mousePosition;

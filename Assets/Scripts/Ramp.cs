@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Ramp : MonoBehaviour
 {
+
+
     [Header("Ramp UI Settings")]
     public Slider FillBarSlider;
     public GameObject FillBarSliderPanel;
@@ -15,12 +17,12 @@ public class Ramp : MonoBehaviour
     private  float _forwardSpeedDecraseTimer = 0.1f;
 
     private void Update() {
-       if(Movement.IsOnRamp){      //rampa hız arttırma. 
-            if(Movement.IsHitTheGround==false){
-                if(50>Movement.forwardSpeed){
-                    transform.Translate(-Vector3.up * Time.deltaTime * Movement.forwardSpeed); // uçabilmek için translate kullandım.
+       if(Movement.Instance.IsOnRamp){      //rampa hız arttırma. 
+            if(FindObjectOfType<Movement>().IsHitTheGround==false){
+                if(50>Movement.Instance.forwardSpeed){
+                    transform.Translate(-Vector3.up * Time.deltaTime * Movement.Instance.forwardSpeed); // uçabilmek için translate kullandım.
                     if(Input.GetMouseButtonDown(0)){
-                        Movement.forwardSpeed+=5;
+                        Movement.Instance.forwardSpeed+=5;
                         OnSliderChanged();     
                     }
                 }   
@@ -28,15 +30,15 @@ public class Ramp : MonoBehaviour
        }
     }
     private void FixedUpdate() {
-        if(Movement.IsOnRamp){ //rampa hız düşürücüsü.
-            if(Movement.IsHitTheGround==false){
+        if(Movement.Instance.IsOnRamp){ //rampa hız düşürücüsü.
+            if(Movement.Instance.IsHitTheGround==false){
                 if(_forwardSpeedDecraseTimer >0){
                     _forwardSpeedDecraseTimer -= Time.fixedDeltaTime;
         }else{
-              if(2f<Movement.forwardSpeed&&FindObjectOfType<Movement>().IsExitRamp==false){
-                Movement.forwardSpeed-=1;
+              if(2f<Movement.Instance.forwardSpeed&&Movement.Instance.IsExitRamp==false){
+                Movement.Instance.forwardSpeed-=1;
                 _forwardSpeedDecraseTimer = 0.1f;
-                Debug.Log("forwardSpeed: "+Movement.forwardSpeed);
+                Debug.Log("forwardSpeed: "+Movement.Instance.forwardSpeed);
                 }
             }
             }
@@ -44,15 +46,14 @@ public class Ramp : MonoBehaviour
     }
 
     public void OnSliderChanged(){
-        FillBarSlider.value = Movement.forwardSpeed;
+        FillBarSlider.value = Movement.Instance.forwardSpeed;
         //FillBarSliderPanel.SetActive(true);
         Fill.color = Gradient.Evaluate(1f);
         Fill.color = Gradient.Evaluate(FillBarSlider.value / FillBarSlider.maxValue);   
     }
     private void OnTriggerEnter(Collider other) {
         if(other.gameObject.tag=="Coin"){          
-            FindObjectOfType<GameManager>().ChangeScore(other.gameObject.transform.GetSiblingIndex());
-            Debug.Log("Coin Collected"+other.gameObject.transform.GetSiblingIndex());       
+            FindObjectOfType<GameManager>().ChangeScore(other.gameObject.transform.GetSiblingIndex());     
         }
     }     
 }

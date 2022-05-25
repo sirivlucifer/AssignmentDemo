@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
-
 public class BoxControl : MonoBehaviour
 {
     private bool _isCompleted = false;
@@ -17,10 +16,7 @@ public class BoxControl : MonoBehaviour
     public GameObject DoorRight;
     private float _timer = 2.5f;
     private float _moveTime = 2.5f;
-
-
-
-    
+    public ParticleSystem Efect;
 
     private void Awake() {
         CurrentPickupsText.text = CurrentPickups.ToString();
@@ -37,7 +33,6 @@ public class BoxControl : MonoBehaviour
                 Elevator.transform.DOMoveY(0,1f);
                 DoorLeft.transform.DOLocalRotate(new Vector3(50,0,0),2.5f);
                 DoorRight.transform.DOLocalRotate(new Vector3(-50,0,0),2.5f);
-
                 if(_moveTime >0){
                  _moveTime -= Time.fixedDeltaTime;
             }else{
@@ -54,11 +49,9 @@ public class BoxControl : MonoBehaviour
             CurrentPickups++;
             CurrentPickupsText.text = CurrentPickups.ToString();
             if(CurrentPickups>=RequiredPickups){
-                _isCompleted = true;      
+                _isCompleted = true;
+                SoundManager.PlaySound("PassLevel");   
             }
     }
-
 }
-
-
 }

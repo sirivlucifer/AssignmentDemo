@@ -202,6 +202,7 @@ MonoBehaviour:
   StageEnd: 0
   _rightTurner: {fileID: 1233968928}
   _leftTurner: {fileID: 1130217252}
+  _scriptable: {fileID: 11400000, guid: 8fa6f6bf766473241b11cbfb58438aaf, type: 2}
 --- !u!4 &27701684 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 10a42bca31c7a1e41b60e2e6baf50b05, type: 3}
@@ -219,8 +220,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1710867cce15ecd4ba04f0b7965319cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FillBarSlider: {fileID: 69439536}
-  FillBarSliderPanel: {fileID: 69439537}
+  FillBarSlider: {fileID: 0}
+  FillBarSliderPanel: {fileID: 0}
+  Gradient:
+    serializedVersion: 2
+    key0: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 1, g: 1, b: 1, a: 1}
+    key2: {r: 0, g: 0, b: 0, a: 0}
+    key3: {r: 0, g: 0, b: 0, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 65535
+    ctime2: 0
+    ctime3: 0
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_NumColorKeys: 2
+    m_NumAlphaKeys: 2
+  Fill: {fileID: 0}
   rampSpesssssed: 1
 --- !u!1 &28098281
 GameObject:
@@ -712,7 +743,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.0017036, y: 1}
+    m_SensorSize: {x: 1.0153322, y: 1}
   m_Transitions:
     m_BlendHint: 2
     m_InheritPosition: 0
@@ -802,22 +833,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a9e4f179a58afe459ea973772a926f1, type: 3}
---- !u!114 &69439536 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1516070766, guid: 6a9e4f179a58afe459ea973772a926f1, type: 3}
-  m_PrefabInstance: {fileID: 69439535}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!1 &69439537 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1106079891, guid: 6a9e4f179a58afe459ea973772a926f1, type: 3}
-  m_PrefabInstance: {fileID: 69439535}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &76297852
 GameObject:
   m_ObjectHideFlags: 0
@@ -7761,7 +7776,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StartingText: {fileID: 190891128}
   GameOverPanel: {fileID: 1660498905}
-  LevelUpPanel: {fileID: 0}
+  LevelUpPanel: {fileID: 1482684112}
   CoinText: {fileID: 317236777}
 --- !u!4 &1034357708
 Transform:
@@ -10820,6 +10835,11 @@ Transform:
   m_Father: {fileID: 2121760313}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1482684112 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3601149574346372573, guid: 500b3c282f25c164590c875acd0c329c, type: 3}
+  m_PrefabInstance: {fileID: 1633821808}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1494845317
 GameObject:
   m_ObjectHideFlags: 0

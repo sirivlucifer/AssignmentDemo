@@ -132,6 +132,7 @@ public class Movement : MonoBehaviour
             StageEnd=true;
             FindObjectOfType<GameManager>().FailTimerCalculate(true);
             TurnerDeActivate();
+            
 
                
         }
@@ -139,7 +140,7 @@ public class Movement : MonoBehaviour
                IsMoving=false;
                Debug.Log("FinishLevel-- level up");
                GameManager.IsLevelUp=true;
-               //TODO: Level Up Screen
+              SoundManager.PlaySound("LevelFinish");
 
         }
         if(other.CompareTag("TurnerTrigger")){
@@ -167,8 +168,7 @@ public class Movement : MonoBehaviour
                _rigidBody.drag = 5;
                 //TODO: LEVEL UP TİMER
               GameManager.IsLevelUp=true;
-
-
+              SoundManager.PlaySound("LevelFinish");
         }
        }
 

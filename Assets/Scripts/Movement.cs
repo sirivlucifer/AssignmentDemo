@@ -23,13 +23,19 @@ public class Movement : MonoBehaviour
     private bool _isExitRamp;
     private bool _isHitTheGround;
     private float _forwardSpeedDecraseTimer = 0.1f;
+
+       [Header("SCRIPTABLE SYSTEM")]
+       [SerializeField] private Scriptable _scriptable;
+
     
 
        private void Awake() {
            _rigidBody = GetComponent<Rigidbody>();
- 
+       GetComponent<Renderer>().material.color = _scriptable.ThisColor;
+       transform.localScale = _scriptable.ThisVector;
+       }
             
-    }
+    
     private void Update() {
        if(_isOnRamp){      //rampa hız arttırma. 
               if(_isHitTheGround==false){
@@ -70,7 +76,7 @@ public class Movement : MonoBehaviour
        }
 
 
-       if(_isTurnerActivated){
+       if(_isTurnerActivated){//i founds this function on github.
 
         _leftTurner.transform.rotation = Quaternion.Euler(0f,a ,-90f);
         _rightTurner.transform.rotation = Quaternion.Euler(0f,-a ,-90f);
@@ -118,24 +124,25 @@ public class Movement : MonoBehaviour
               _isTurnerActivated=false;
        }
        private void OnTriggerEnter(Collider other) {
-        if(other.gameObject.tag=="LevelEnd"){
+        if(other.CompareTag("LevelEnd")){
             Debug.Log("LevelEnd--LevelStage.");
             IsMoving=false;
            // _rigidBody.constraints = RigidbodyConstraints.None | RigidbodyConstraints.FreezeRotation;
             other.gameObject.SetActive(false);
             StageEnd=true;
-            FindObjectOfType<GameManager>().toggleFailTimer(true);
+            FindObjectOfType<GameManager>().FailTimerCalculate(true);
             TurnerDeActivate();
+
                
         }
-        if(other.gameObject.tag=="FinishLevel"){
+        if(other.CompareTag("FinishLevel")){
                IsMoving=false;
                Debug.Log("FinishLevel-- level up");
                GameManager.IsLevelUp=true;
                //TODO: Level Up Screen
 
         }
-        if(other.gameObject.tag=="TurnerTrigger"){
+        if(other.CompareTag("TurnerTrigger")){
                Destroy(other.gameObject);
                Debug.Log("Turner Trigger Enter");
                TurnerActivate();

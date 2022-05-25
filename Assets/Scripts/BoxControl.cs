@@ -18,6 +18,8 @@ public class BoxControl : MonoBehaviour
     private float _timer = 2.5f;
     private float _moveTime = 2.5f;
 
+
+
     
 
     private void Awake() {
@@ -27,7 +29,7 @@ public class BoxControl : MonoBehaviour
     private void FixedUpdate() {
     if(_isCompleted){
         if(CurrentPickups >= RequiredPickups){//this if needed because of other level will be bug if it is not.
-        FindObjectOfType<GameManager>().toggleFailTimer(false);
+        FindObjectOfType<GameManager>().FailTimerCalculate(false);
             if(_timer > 0){//do after 2.5 seconds.
                 _timer -= Time.fixedDeltaTime;
             }else{
@@ -55,6 +57,7 @@ public class BoxControl : MonoBehaviour
                 _isCompleted = true;      
             }
     }
+
 }
 
 

@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
         }
     }
     
-    public void toggleFailTimer(bool state)
+    public void FailTimerCalculate(bool state)
 
     {
         if (state)

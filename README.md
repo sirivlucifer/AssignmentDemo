@@ -3,6 +3,8 @@
 
 Scriptable obje olarak Player ve Floor objelerini kullanark renk ve boyut ayarlaması yapılmakta.
 
+Görselliğe önem verilmemiş olup kod kalitesi amaçlanmıştır.
+
 Kullanılan teknolojiler ve teknikler:
 
 Cinemachine

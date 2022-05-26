@@ -3,46 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MyGameManager : MonoBehaviour
+public class MyGameManager : MonoBehaviour //TEST
 {
     public static MyGameManager instance;
 
     [HideInInspector]
     public bool startGame, failed, successed,tutorialMode;
-    public GameObject successPanel, failPanel, startGamePanel,tutorialPanel;
+    public GameObject successPanel;
 
-    [HideInInspector]
-    public float ballSize = 0.29f;
+
+    public static int LevelCounter=1;
+    public static int LevelCounterPlusOne=2;
+
     private void Awake()
     {
         Application.targetFrameRate = 145; 
         if (instance == null) instance = this;
         //   TinySauce.OnGameStarted(PlayerPrefs.GetInt("CurrentLevel", 1).ToString());
 
-    }
-
-
-    public void StartGame()
-    {
-        //startGame = true;
-        //startGamePanel.SetActive(false);
-   
-
-    }
-
-    public void Fail()
-    {
-        if (!failed)
-        {
-            failed = true;
-            failPanel.SetActive(true);
-        }
-    }
-    public void Success()
-    {
-        successed = true;
-        successPanel.SetActive(true);
-        PlayerPrefs.SetInt("CurrentLevel", PlayerPrefs.GetInt("CurrentLevel", 1) + 1);
     }
 
     public void NextLevel()
@@ -53,16 +31,10 @@ public class MyGameManager : MonoBehaviour
         successPanel.SetActive(false);
         PlayerPrefs.SetInt("CurrentLevel", PlayerPrefs.GetInt("CurrentLevel", 1) + 1);
         SceneManager.LoadScene(0);
+        LevelCounter+=1;
+        LevelCounterPlusOne+=1;
+
         
-
-
-
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(0);
-        // Destroy(this);
     }
 
 

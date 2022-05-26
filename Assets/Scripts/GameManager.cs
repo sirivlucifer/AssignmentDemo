@@ -28,13 +28,10 @@ public class GameManager : MonoBehaviour
         }
         score = PlayerPrefs.GetInt("score"); //SAVE SYSTEM
         CoinText.text = score.ToString();
-        Debug.Log(PlayerPrefs.GetInt("score"));
     }
     public void ChangeScore(int coinValue){
         PlayerPrefs.SetInt("score",score);
         score += coinValue*10 ;
-        Debug.Log("aaaaaa");
-        Debug.Log(PlayerPrefs.GetInt("score"));
         PlayerPrefs.SetInt("score",score); //SAVE SYSTEM
         CoinText.text = score.ToString();
     }

@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class LoadAsync : MonoBehaviour
 {
+    
     private AsyncOperation async;
     public float targetTime;
     private bool timerIsEnded = false;

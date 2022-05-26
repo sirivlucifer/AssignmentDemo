@@ -1,5 +1,3 @@
-# Picker3DLevelUP
- LevelUP BootCamp Demo Game
 
 Scriptable obje olarak Player ve Floor objelerini kullanark renk ve boyut ayarlaması yapılmakta.
 

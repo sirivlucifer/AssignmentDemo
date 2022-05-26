@@ -5,12 +5,12 @@ Görselliğe önem verilmemiş olup kod kalitesi amaçlanmıştır.
 
 Kullanılan teknolojiler ve teknikler:
 
-Cinemachine
-Singleton
-Scriptable Object
-Async Method
-Save/Load - PlayerPrefs.
-Prefab Loading
+Cinemachine,
+Singleton,
+Scriptable Object,
+Async Method,
+Save/Load - PlayerPrefs.,
+Prefab Loading,
 Dotween
 
 --------
